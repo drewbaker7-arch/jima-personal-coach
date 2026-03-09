@@ -60,7 +60,7 @@ export default function HomeContent() {
               alt={t.hero.imageAlt}
               fill
               priority
-              className="object-cover object-[center_20%]"
+              className="object-cover object-top"
             />
           </div>
 

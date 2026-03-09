@@ -105,7 +105,7 @@ const es: Dictionary = {
     monthlyBadge: "M\u00e1s Popular",
     monthlyTitle: "Coaching Mensual",
     monthlyPrice: "$60/mes",
-    monthlyDesc: "Sesiones semanales de 60 minutos. Apoyo continuo, responsabilidad e impulso. Son 4 sesiones al mes \u2014 menos de $1 al d\u00eda para invertir en ti mismo.",
+    monthlyDesc: "Sesiones semanales de 60 minutos. Apoyo continuo, responsabilidad e impulso. Son 4 sesiones al mes \u2014 menos de $2 al d\u00eda para invertir en ti mismo.",
     monthlyCta: "Empieza el Coaching Mensual",
     pill1: "Horarios Flexibles",
     pill2: "Fluido en Ingl\u00e9s y Espa\u00f1ol",

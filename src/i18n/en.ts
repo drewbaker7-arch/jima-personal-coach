@@ -103,7 +103,7 @@ const en = {
     monthlyBadge: "Most Popular",
     monthlyTitle: "Monthly Coaching",
     monthlyPrice: "$60/mo",
-    monthlyDesc: "Weekly 60-minute sessions. Ongoing support, accountability, and momentum. That\u2019s 4 sessions a month \u2014 less than $1 a day to invest in yourself.",
+    monthlyDesc: "Weekly 60-minute sessions. Ongoing support, accountability, and momentum. That\u2019s 4 sessions a month \u2014 less than $2 a day to invest in yourself.",
     monthlyCta: "Start Monthly Coaching",
     pill1: "Flexible Scheduling",
     pill2: "Fluent in English & Spanish",
