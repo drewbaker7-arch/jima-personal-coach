@@ -1,17 +1,34 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
-const navLinks = [
-  { label: "Benefits", href: "#benefits" },
-  { label: "Who It's For", href: "#personas" },
-  { label: "Testimonials", href: "#quotes" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
-];
+function LanguageToggle() {
+  const { lang, toggleLanguage } = useLanguage();
+
+  return (
+    <button
+      onClick={toggleLanguage}
+      className="inline-flex items-center gap-1.5 rounded-card-lg border border-teal-200 bg-teal-50/60 px-2.5 py-1 text-xs font-medium text-teal-700 hover:bg-teal-100 transition-colors"
+      aria-label={lang === "en" ? "Cambiar a espa\u00f1ol" : "Switch to English"}
+    >
+      <span className="text-sm leading-none">{lang === "en" ? "\ud83c\uddea\ud83c\uddf8" : "\ud83c\uddfa\ud83c\uddf8"}</span>
+      <span>{lang === "en" ? "ES" : "EN"}</span>
+    </button>
+  );
+}
 
 export default function Navbar() {
+  const { t } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const navLinks = [
+    { label: t.nav.benefits, href: "#benefits" },
+    { label: t.nav.whoItsFor, href: "#personas" },
+    { label: t.nav.testimonials, href: "#quotes" },
+    { label: t.nav.pricing, href: "#pricing" },
+    { label: t.nav.faq, href: "#faq" },
+  ];
 
   useEffect(() => {
     function handleEscape(e: KeyboardEvent) {
@@ -30,8 +47,10 @@ export default function Navbar() {
     >
       <div className="flex items-center justify-between px-6 md:px-8 py-4">
 
-        {/* Spacer for centering on desktop */}
-        <div className="hidden md:block md:w-[120px]" />
+        {/* Desktop left: language toggle (spacer for centering) */}
+        <div className="hidden md:flex md:w-[140px] items-center">
+          <LanguageToggle />
+        </div>
 
         {/* Desktop nav links — centered */}
         <ul className="hidden md:flex items-center justify-center gap-7 list-none m-0 p-0">
@@ -47,48 +66,39 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Desktop CTA — hidden on mobile */}
-        <div className="hidden md:block md:w-[120px] text-right">
+        {/* Desktop CTA */}
+        <div className="hidden md:block md:w-[140px] text-right">
           <a href="#pricing" className="btn btn-primary btn-sm">
-            Get Started
+            {t.nav.getStarted}
           </a>
         </div>
 
-        {/* Mobile hamburger button — visible only on mobile */}
-        <button
-          type="button"
-          className="md:hidden flex items-center justify-center text-teal-700 hover:text-teal-900 transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-white rounded-card-lg"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileOpen}
-          aria-controls="mobile-menu"
-          onClick={() => setMobileOpen((prev) => !prev)}
-        >
-          {mobileOpen ? (
-            /* X icon when open */
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-              aria-hidden="true"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          ) : (
-            /* Hamburger icon when closed */
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-              aria-hidden="true"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          )}
-        </button>
+        {/* Mobile: hamburger left, toggle right */}
+        <div className="md:hidden flex items-center">
+          <button
+            type="button"
+            className="flex items-center justify-center text-teal-700 hover:text-teal-900 transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-white rounded-card-lg"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMobileOpen((prev) => !prev)}
+          >
+            {mobileOpen ? (
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
+        </div>
+
+        {/* Mobile: language toggle on right side, always visible */}
+        <div className="md:hidden">
+          <LanguageToggle />
+        </div>
 
       </div>
 
@@ -114,7 +124,7 @@ export default function Navbar() {
               className="btn btn-primary btn-sm w-full justify-center"
               onClick={() => setMobileOpen(false)}
             >
-              Get Started
+              {t.nav.getStarted}
             </a>
           </div>
         </div>

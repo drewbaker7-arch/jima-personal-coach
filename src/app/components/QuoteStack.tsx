@@ -1,28 +1,6 @@
-import Image from "next/image";
+"use client";
 
-/* --------------------------------------------------------------------------
-   QuoteStack
-   4 testimonial quote cards displayed in a scattered layout.
-   -------------------------------------------------------------------------- */
-
-const QUOTES = [
-  {
-    text: "Coaching is unlocking a person\u2019s potential to maximize their own performance.",
-    author: "Timothy Gallwey",
-  },
-  {
-    text: "One of the biggest contributors to my self-confidence has been private coaching.",
-    author: "Stephen Curry",
-  },
-  {
-    text: "Sometimes they just need a little nudge, a little direction, a little coaching, and the greatest things can happen.",
-    author: "Pete Carroll",
-  },
-  {
-    text: "A life coach does for the rest of your life what a personal trainer does for your health and fitness.",
-    author: "Elaine MacDonald",
-  },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 /* Scattered positions — slot-based x for even distribution */
 const SCATTER = [
@@ -33,11 +11,15 @@ const SCATTER = [
 ];
 
 export default function QuoteStack() {
+  const { t } = useLanguage();
+
+  const quotes = [t.quotes.quote1, t.quotes.quote2, t.quotes.quote3, t.quotes.quote4];
+
   return (
     <div className="quote-section">
       <div className="quote-section__inner">
         <div className="quote-scatter">
-          {QUOTES.map((quote, i) => {
+          {quotes.map((quote, i) => {
             const scatter = SCATTER[i];
 
             return (

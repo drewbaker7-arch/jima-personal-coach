@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Solway } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/i18n/LanguageContext";
 
 const solway = Solway({
   variable: "--font-solway",
@@ -22,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${solway.variable} antialiased`}>
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
