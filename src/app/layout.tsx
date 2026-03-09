@@ -11,8 +11,23 @@ const solway = Solway({
 });
 
 export const metadata: Metadata = {
-  title: "Jima Personal Coach",
-  description: "Personal coaching to help you grow, heal, and thrive.",
+  title: "Jima Personal Coach — Real Coaching. Real Change.",
+  description:
+    "Overcome procrastination, build better habits, and map out your goals with personalized 1-on-1 coaching. Book your free 20-minute consult today.",
+  metadataBase: new URL("https://jima-personal-coach.vercel.app"),
+  openGraph: {
+    title: "Jima Personal Coach — Real Coaching. Real Change.",
+    description:
+      "Overcome procrastination, build better habits, and map out your goals with personalized 1-on-1 coaching.",
+    siteName: "Jima Personal Coach",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jima Personal Coach — Real Coaching. Real Change.",
+    description:
+      "Overcome procrastination, build better habits, and map out your goals with personalized 1-on-1 coaching.",
+  },
 };
 
 export default function RootLayout({
