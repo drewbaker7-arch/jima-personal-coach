@@ -1,26 +1,472 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ==========================================================================
+   JIMA PERSONAL COACH — DESIGN SYSTEM
+   Inspired by warm, approachable therapy/coaching aesthetics.
+   Deep teal brand + cream warmth + coral accents.
+   Serif display type (Fraunces) + clean geometric body (DM Sans).
+   ========================================================================== */
+
+@theme {
+  /* ----- PRIMARY: TEAL (Talkspace brand #005C65) ----- */
+  --color-teal-50: #E1F0EE;
+  --color-teal-100: #C0E0DC;
+  --color-teal-200: #8FC9C4;
+  --color-teal-300: #58AFA9;
+  --color-teal-400: #319691;
+  --color-teal-500: #177D79;
+  --color-teal-600: #0B6C6F;
+  --color-teal-700: #005C65;
+  --color-teal-800: #004D55;
+  --color-teal-900: #003E45;
+  --color-teal-950: #002830;
+
+  /* ----- WARM NEUTRALS: CREAM (Talkspace light yellow #FDFFDD) ----- */
+  --color-cream-50: #FEFFFA;
+  --color-cream-100: #FEFFF2;
+  --color-cream-200: #FDFFDD;
+  --color-cream-300: #F9FBCE;
+  --color-cream-400: #F0F3B4;
+  --color-cream-500: #E0E496;
+  --color-cream-600: #C5C876;
+  --color-cream-700: #A2A55C;
+  --color-cream-800: #84874B;
+  --color-cream-900: #6D6E40;
+  --color-cream-950: #3B3C22;
+
+  /* ----- ACCENT: CORAL (Talkspace highlight #F2734A) ----- */
+  --color-coral-50: #FFF4EE;
+  --color-coral-100: #FFE3D5;
+  --color-coral-200: #FFC4AA;
+  --color-coral-300: #FF9E74;
+  --color-coral-400: #F2734A;
+  --color-coral-500: #E0582E;
+  --color-coral-600: #C94420;
+  --color-coral-700: #A6371A;
+  --color-coral-800: #862F19;
+  --color-coral-900: #6D2919;
+  --color-coral-950: #3A120A;
+
+  /* ----- DECORATIVE ACCENTS (Talkspace pastels) ----- */
+  --color-accent-yellow: #EAF475;
+  --color-accent-sage: #9DEAB2;
+  --color-accent-sky: #B9DDFF;
+  --color-accent-lavender: #FAD9CE;
+  --color-accent-peach: #FFB8B2;
+
+  /* ----- BORDER RADIUS ----- */
+  --radius-pill: 9999px;
+  --radius-card: 0.375rem;
+  --radius-card-lg: 0.5rem;
+
+  /* ----- BOX SHADOWS ----- */
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --shadow-soft: 0 1px 4px rgba(0, 0, 0, 0.04);
+  --shadow-elevated: 0 12px 40px rgba(0, 0, 0, 0.12);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ==========================================================================
+   BASE STYLES
+   ========================================================================== */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Font vars must live on body because next/font sets --font-solway here */
+  --font-display: var(--font-solway), Georgia, "Times New Roman", serif;
+  --font-body: var(--font-solway), Georgia, "Times New Roman", serif;
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--color-teal-950);
+  background-color: #ffffff;
+}
+
+h1, h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--color-teal-700);
+}
+
+h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-teal-950);
+}
+
+/* Headings on dark teal backgrounds */
+.dark-section h1,
+.dark-section h2,
+.dark-section h3,
+.dark-section h4,
+.dark-section h5,
+.dark-section h6,
+.dark-section p,
+.dark-section span,
+.dark-section li {
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   BUTTON BASE STYLES
+   Rounded rectangle (8px radius), generous padding, smooth transitions.
+   Use with Tailwind utility classes for color variants.
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 1;
+  padding: 0.875rem 2rem;
+  border-radius: var(--radius-card-lg);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--color-teal-700);
+  color: #ffffff;
+}
+.btn-primary:hover {
+  background-color: var(--color-teal-800);
+  box-shadow: var(--shadow-card);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.btn-coral {
+  background-color: var(--color-coral-500);
+  color: #ffffff;
+}
+.btn-coral:hover {
+  background-color: var(--color-coral-600);
+  box-shadow: var(--shadow-card);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-teal-700);
+  border-color: var(--color-teal-700);
+}
+.btn-outline:hover {
+  background-color: var(--color-teal-700);
+  color: #ffffff;
+}
+
+.btn-sm {
+  font-size: 0.8125rem;
+  padding: 0.625rem 1.5rem;
+}
+
+.btn-lg {
+  font-size: 1.0625rem;
+  padding: 1.125rem 2.5rem;
+}
+
+/* ==========================================================================
+   PERSONA CARDS — Section 4 "Who is coaching for?"
+   4 colorful cards with real photos, staggered entrance animation.
+   ========================================================================== */
+
+/* ---------- Grid container ---------- */
+.persona-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  padding: 2.5rem 1.5rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .persona-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding: 2.5rem 3rem 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .persona-grid {
+    padding: 2.5rem 5rem 1rem;
+  }
+}
+
+/* ---------- Individual card ---------- */
+.persona-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-card-lg);
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+
+  /* Entrance animation */
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.persona-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- Entrance animation ---------- */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.persona-card--visible {
+  animation: fadeSlideUp 0.6s ease-out both;
+}
+
+/* ---------- Photo area ---------- */
+.persona-card__photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.persona-card__image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.persona-card:hover .persona-card__image {
+  transform: scale(1.04);
+}
+
+/* ---------- Text body ---------- */
+.persona-card__body {
+  padding: 1.25rem 1rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .persona-card__body {
+    padding: 1.5rem 1.25rem 1.75rem;
+  }
+}
+
+.persona-card__quote {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: var(--color-teal-950);
+}
+
+@media (min-width: 768px) {
+  .persona-card__quote {
+    font-size: 1.0625rem;
+  }
+}
+
+.persona-card__description {
+  font-weight: 300;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--color-teal-800);
+  opacity: 0.7;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .persona-card__description {
+    font-size: 0.875rem;
+  }
+}
+
+/* ---------- Card color variants ---------- */
+.persona-card--sage {
+  background-color: var(--color-accent-sage, #9DEAB2);
+}
+.persona-card--sage .persona-card__body {
+  background-color: #D4F5DE;
+}
+
+.persona-card--yellow {
+  background-color: var(--color-accent-yellow, #EAF475);
+}
+.persona-card--yellow .persona-card__body {
+  background-color: #F5FBCE;
+}
+
+.persona-card--coral {
+  background-color: var(--color-accent-peach, #FFB8B2);
+}
+.persona-card--coral .persona-card__body {
+  background-color: #FFE0DD;
+}
+
+.persona-card--sky {
+  background-color: var(--color-accent-sky, #B9DDFF);
+}
+.persona-card--sky .persona-card__body {
+  background-color: #E0EEFF;
+}
+
+
+/* ==========================================================================
+   QUOTE STACK — Hover-to-scatter card deck
+   ========================================================================== */
+
+/* Section wrapper — fixed height, centered content */
+.quote-section {
+  padding: 4rem 0;
+  cursor: default;
+}
+
+.quote-section__inner {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .quote-section__inner {
+    padding: 0 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .quote-section__inner {
+    padding: 0 5rem;
+  }
+}
+
+/* ---------- Scatter container ---------- */
+.quote-scatter {
+  --card-w: 200px;          /* must stay in sync with .quote-card-landscape width */
+  position: relative;
+  width: 100%;
+  height: 220px;
+}
+
+/* ---------- Landscape quote card ---------- */
+.quote-card-landscape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  padding: 1.25rem 1.5rem 1rem;
+  border-radius: var(--radius-card-lg);
+  background: var(--color-cream-100, #FAF6F1);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.05),
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 8px 32px rgba(0, 0, 0, 0.03);
+  /* Scattered layout — uses CSS custom props set inline */
+  left: var(--scatter-x);
+  transform:
+    translateY(var(--scatter-y))
+    rotate(var(--scatter-r));
+  transition: box-shadow 0.3s ease;
+}
+
+.quote-card-landscape:hover {
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.07),
+    0 8px 28px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 1024px) {
+  .quote-scatter { --card-w: 230px; }
+  .quote-card-landscape {
+    width: 230px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .quote-scatter { --card-w: 260px; }
+  .quote-card-landscape {
+    width: 260px;
+  }
+}
+
+/* Mobile: static 2x2 grid, no hover animation */
+@media (max-width: 767px) {
+  .quote-section {
+    padding: 2rem 0;
+  }
+
+  .quote-section__inner {
+    padding: 0 1rem;
+  }
+
+  .quote-scatter {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    height: auto;
+  }
+
+  .quote-card-landscape {
+    position: relative;
+    width: 100%;
+    transform: none !important;
+    transition: none;
+    padding: 0.75rem 0.75rem 0.625rem;
+  }
+}
+
+/* ---------- Card content ---------- */
+.quote-card-landscape__text {
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--color-teal-950);
+  font-style: italic;
+  letter-spacing: -0.005em;
+}
+
+@media (min-width: 768px) {
+  .quote-card-landscape__text {
+    font-size: 0.875rem;
+  }
+}
+
+.quote-card-landscape__author {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--color-teal-700);
+  margin-top: 0.625rem;
+  letter-spacing: 0.02em;
+}
+
+.quote-card-landscape__author::before {
+  content: "\2014\00a0";
+}
+
+@media (max-width: 767px) {
+  .quote-card-landscape__text {
+    font-size: 0.6875rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .quote-card-landscape__author {
+    font-size: 0.5625rem !important;
+    margin-top: 0.375rem !important;
+  }
 }
