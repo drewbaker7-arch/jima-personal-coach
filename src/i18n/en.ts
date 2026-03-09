@@ -159,7 +159,7 @@ const en = {
     cta: "Book Your Free Consult",
     copyright: "Jima Personal Coach",
   },
-} as const;
+};
 
 export type Dictionary = typeof en;
 export default en;

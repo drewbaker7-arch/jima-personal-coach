@@ -281,7 +281,7 @@ export default function HomeContent() {
 
             {/* Right column: accordion */}
             <div>
-              <FaqAccordion items={t.faq.items as { question: string; answer: string }[]} />
+              <FaqAccordion items={t.faq.items as unknown as { question: string; answer: string }[]} />
             </div>
 
           </div>
